@@ -7,7 +7,7 @@
       .map((i, index) => index + 1)
       .sort(() => Math.random() - 0.5);
 
-  let cartilla = createNumbers().slice(0, 9);
+  let cartilla = createNumbers().slice(0, 25);
   let bingo = createNumbers();
   let bolasSacadas = [];
   let bolas = [];
@@ -18,7 +18,7 @@
       const ball = +bingo.splice(0, 1);
       bolas = [ball, ...bolas];
       if (cartilla.includes(ball)) bolasSacadas = [...bolasSacadas, ball];
-      if (bolasSacadas.length >= 9) {
+      if (isWinner()) {
         confetti();
         winner = true;
         clearInterval(ciclo);
@@ -29,8 +29,11 @@
 
   iniBingo();
 
+  // TODO: Hacer todas las combinaciones ganadoras
+  const isWinner = () => bolasSacadas.length >= 25
+
   const newGame = () => {
-    cartilla = createNumbers().slice(0, 9);
+    cartilla = createNumbers().slice(0, 25);
     bingo = createNumbers();
     bolasSacadas = [];
     bolas = [];
@@ -112,12 +115,12 @@
   }
   section {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     margin: 0 auto;
     gap: .3rem;
   }
   .celda {
-    height: 5rem;
+    height: 3.5rem;
     /* order: 1; */
     /* border: 3px solid rgb(255, 255, 0); */
     border: 3px solid rgba(0, 0, 0, 0.736);
