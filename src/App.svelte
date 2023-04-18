@@ -1,5 +1,6 @@
 <script>
   import confetti from 'canvas-confetti'
+  import { combos } from './combos';
 
   const createNumbers = () =>
     Array(90)
@@ -14,20 +15,7 @@
   let winner = false;
   let bolasWin = []
 
-  const combos = [
-    [0,1,2,3,4],
-    [5,6,7,8,9],
-    [10,11,12,13,14],
-    [15,16,17,18,19],
-    [20,21,22,23,24],
-    [0,5,10,15,20],
-    [1,6,11,16,21],
-    [2,7,12,17,22],
-    [3,8,13,18,23],
-    [4,9,14,19,24],
-    [0,6,12,18,24],
-    [4,8,12,16,20],
-  ]
+
 
   const iniBingo = () => {
     const ciclo = setInterval(() => {
@@ -40,7 +28,7 @@
         winner = true;
         clearInterval(ciclo);
       }
-    }, 100);
+    }, 500);
   };
 
   iniBingo();
@@ -163,7 +151,20 @@
     border-radius: 10px;
   }
   .celdaWin {
-    border: 3px solid rgb(255, 200, 0);
+    border-color: rgb(255, 200, 0);
+    animation: celdaPalpitar infinite 1.5s linear;
+  }
+
+  @keyframes celdaPalpitar {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   .celda img {
     height: 100%;
