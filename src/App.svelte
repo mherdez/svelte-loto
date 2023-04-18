@@ -53,7 +53,7 @@
     combos.forEach( jugada => {
       if (jugada.every( check => bolasSacadas.includes(cartilla[check])))
       {
-        bolasWin = [...jugada]
+        bolasWin = [...jugada.map( i => cartilla[i])]
       }
     })
   }
@@ -73,7 +73,7 @@
 <main>
   <section>
     {#each cartilla as item}
-      <div class='celda'>
+      <div class={bolasWin.includes(item) ? 'celda celdaWin' : 'celda'}>
         <div class={bolas.includes(item) ? 'ok' : ''}></div>
         <img src="./assets/{item}.png" alt="img{item}" />
       </div>
