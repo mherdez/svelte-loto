@@ -12,7 +12,7 @@
   let bolasSacadas = [];
   let bolas = [];
   let winner = false;
-  $: bolasWin = []
+  let bolasWin = []
 
   const combos = [
     [0,1,2,3,4],
@@ -39,7 +39,6 @@
         celdaWin();
         winner = true;
         clearInterval(ciclo);
-        console.log(bolasWin)
       }
     }, 100);
   };
@@ -83,14 +82,14 @@
     {#each bolas as bola, index}
       <span class={index === 0 ? 'first' : ''}>{bola}</span>
     {/each}
-  </div>
 
-  {#if winner}
+    {#if winner}
     <div class="winner">
       <p>LOTERÍA!!!</p>
       <div class="newGame" on:click={newGame} on:keydown={newGame}>New game</div>
     </div>
-  {/if}
+    {/if}
+  </div>
 </main>
 
 <style>
@@ -110,6 +109,9 @@
     display: grid;
     grid-template-columns: repeat(6, 3.5rem);
     margin: 2rem auto;
+    position: relative;
+    width: 100%;
+    justify-content: center;
   }
   .bingo .first {
     grid-column: 1 / -1;
@@ -188,14 +190,11 @@
   .winner {
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: -3%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-star;
     align-items: center;
     flex-direction: column;
   }
