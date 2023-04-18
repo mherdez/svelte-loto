@@ -1,5 +1,5 @@
 <script>
-  import confetti from 'canvas-confetti';
+  import confetti from 'canvas-confetti'
 
   const createNumbers = () =>
     Array(90)
@@ -22,6 +22,7 @@
         confetti();
         winner = true;
         clearInterval(ciclo);
+        confetti.reset()
       }
     }, 1000);
   };
@@ -65,7 +66,7 @@
 <style>
   h1 {
     text-align: center;
-    letter-spacing: .1rem;
+    letter-spacing: .08rem;
   }
   main {
     display: flex;
@@ -83,9 +84,9 @@
   .bingo .first {
     grid-column: 1 / -1;
     border: 10px solid rgb(255, 200, 0);
-    font-size: 3rem;
-    inline-size: 3rem;
-    height: 3rem;
+    font-size: 3.3rem;
+    inline-size: 2rem;
+    height: 2rem;
     padding: 2.5rem;
     text-align: center;
     justify-self: center;
@@ -111,21 +112,22 @@
   }
   section {
     display: grid;
-    grid-template-columns: repeat(3, 17 0px);
+    grid-template-columns: repeat(3, 1fr);
     margin: 0 auto;
+    gap: .3rem;
   }
   .celda {
-    height: 130px;
+    height: 5rem;
     /* order: 1; */
     /* border: 3px solid rgb(255, 255, 0); */
-    border: 5px solid rgba(0, 0, 0, 0.736);
+    border: 3px solid rgba(0, 0, 0, 0.736);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3rem;
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.736);
     position: relative;
-    border-radius: 20px;
+    border-radius: 10px;
 
   }
   .celda img {
