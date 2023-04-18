@@ -68,7 +68,7 @@
     flex-direction: column;;
     justify-content: center;
     align-items: start;
-    padding: 2rem;
+    padding: .5rem 0;
   }
   .bingo {
     /* order: 2; */
@@ -149,22 +149,23 @@
     flex-direction: column;
   }
   .winner p {
-    font-size: 10rem;
-    letter-spacing: 1rem;
+    font-size: 3.8rem;
+    letter-spacing: .5rem;
     font-weight: bolder;
     font-family: Arial, Helvetica, sans-serif;
-    -webkit-text-stroke: 0.2rem white;
+    -webkit-text-stroke: 0.1rem white;
     text-shadow: 5px 5px 15px black;
     color: red;
   }
   .newGame {
-    font-size: 1.5rem;
+    font-size: 0.8rem;
     background-color: rebeccapurple;
-    padding: 1rem 2rem;
+    padding: .8rem 1.5rem;
     border: 0.2rem solid white;
     border-radius: 25px;
     text-shadow: 5px 5px 10px black;
     cursor: pointer;
+    margin-top: 1rem;
   }
  @media (min-width: 821px) {
  main {
