@@ -12,6 +12,22 @@
   let bolasSacadas = [];
   let bolas = [];
   let winner = false;
+  $: bolasWin = []
+
+  const combos = [
+    [0,1,2,3,4],
+    [5,6,7,8,9],
+    [10,11,12,13,14],
+    [15,16,17,18,19],
+    [20,21,22,23,24],
+    [0,5,10,15,20],
+    [1,6,11,16,21],
+    [2,7,12,17,22],
+    [3,8,13,18,23],
+    [4,9,14,19,24],
+    [0,6,12,18,24],
+    [4,8,12,16,20],
+  ]
 
   const iniBingo = () => {
     const ciclo = setInterval(() => {
@@ -20,17 +36,27 @@
       if (cartilla.includes(ball)) bolasSacadas = [...bolasSacadas, ball];
       if (isWinner()) {
         confetti();
+        celdaWin();
         winner = true;
         clearInterval(ciclo);
-        confetti.reset()
+        console.log(bolasWin)
       }
-    }, 1000);
+    }, 100);
   };
 
   iniBingo();
 
   // TODO: Hacer todas las combinaciones ganadoras
-  const isWinner = () => bolasSacadas.length >= 25
+  const isWinner = () => combos.some( (jugada) => jugada.every( check => bolasSacadas.includes(cartilla[check])));
+
+  const celdaWin = () => {
+    combos.forEach( jugada => {
+      if (jugada.every( check => bolasSacadas.includes(cartilla[check])))
+      {
+        bolasWin = [...jugada]
+      }
+    })
+  }
 
   const newGame = () => {
     cartilla = createNumbers().slice(0, 25);
@@ -39,6 +65,7 @@
     bolas = [];
     winner = false;
     iniBingo();
+    bolasWin = []
   };
 </script>
 
@@ -46,7 +73,7 @@
 <main>
   <section>
     {#each cartilla as item}
-      <div class="celda">
+      <div class='celda'>
         <div class={bolas.includes(item) ? 'ok' : ''}></div>
         <img src="./assets/{item}.png" alt="img{item}" />
       </div>
@@ -81,7 +108,7 @@
   .bingo {
     /* order: 2; */
     display: grid;
-    grid-template-columns: repeat(6, 4rem);
+    grid-template-columns: repeat(6, 3.5rem);
     margin: 2rem auto;
   }
   .bingo .first {
@@ -103,21 +130,22 @@
     border: 3px solid rgba(255, 255, 0, 0.766);
     border-radius: 50%;
     color: white;
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-    width: 1.5rem;
+    font-size: 1rem;
+    line-height: 1rem;
+    width: 1rem;
     display: inline-block;
     padding: 0.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0.5rem;
+    margin: 0.5rem 0;
   }
   section {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     margin: 0 auto;
     gap: .3rem;
+    padding: 1rem;
   }
   .celda {
     height: 3.5rem;
@@ -131,7 +159,9 @@
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.736);
     position: relative;
     border-radius: 10px;
-
+  }
+  .celdaWin {
+    border: 3px solid rgb(255, 200, 0);
   }
   .celda img {
     height: 100%;
@@ -158,7 +188,7 @@
   .winner {
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -170,8 +200,8 @@
     flex-direction: column;
   }
   .winner p {
-    font-size: 3.8rem;
-    letter-spacing: 0.5rem;
+    font-size: 2.8rem;
+    letter-spacing: 0.3rem;
     font-weight: bolder;
     font-family: Arial, Helvetica, sans-serif;
     -webkit-text-stroke: 0.1rem black;
