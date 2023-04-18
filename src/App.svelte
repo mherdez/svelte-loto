@@ -61,7 +61,7 @@
   {#if winner}
     <div class="winner">
       <p>LOTERÍA!!!</p>
-      <div class="newGame" on:click={newGame}>New game</div>
+      <div class="newGame" on:click={newGame} on:keydown={newGame}>New game</div>
     </div>
   {/if}
 </main>
@@ -151,7 +151,7 @@
     font-weight: bold;
     /* box-shadow: 5px 5px 10px 2px black; */
     /* font-size: 2.5rem; */
-    background-image: url('./assets/frijol.png');
+    background-image: url('/assets/frijol.png');
     background-position: center;
     background-size: cover;
   }
