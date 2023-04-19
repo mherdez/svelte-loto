@@ -152,7 +152,7 @@
   }
   .celdaWin {
     border-color: rgb(255, 200, 0);
-    animation: celdaPalpitar infinite 1.5s linear;
+    animation: celdaPalpitar infinite 1.3s linear;
   }
 
   @keyframes celdaPalpitar {
@@ -160,7 +160,7 @@
       transform: scale(1);
     }
     50% {
-      transform: scale(1.1);
+      transform: scale(1.15);
     }
     100% {
       transform: scale(1);
